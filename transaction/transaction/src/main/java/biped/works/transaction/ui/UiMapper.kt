@@ -21,6 +21,6 @@ fun TransactionUiModel.toTransactionUpdate() = TransactionUpdate(
     name = name,
     description = description,
     due = due,
-    value = Amount(amount.toDouble(), currency),
+    value = Amount(amount, currency),
     recurrence = Recurrence("times=1", "MONTHLY")
 )

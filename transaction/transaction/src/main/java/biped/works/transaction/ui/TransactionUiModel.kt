@@ -14,8 +14,14 @@ data class TransactionUiModel(
     val currency: String = ""
 ) {
     val dueEpoch = due.asEpoch()
+    val isIncoming = amount >= 0
 
-    fun formattedAmount() = amount.toString()
+    fun formatAmount() = amount.toString().replace("-", "")
 
     fun invertAmount() = copy(amount = amount * -1)
+
+    fun setAmount(amount: String): TransactionUiModel {
+        val newAmount = amount.toDouble()
+        return copy(amount = if (this.amount < 0) newAmount * -1 else newAmount)
+    }
 }
